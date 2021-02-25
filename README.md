@@ -22,3 +22,6 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+### Fake JSON Data generator
+See [Mockaroo](https://www.mockaroo.com/).
