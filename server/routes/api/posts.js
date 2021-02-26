@@ -1,8 +1,8 @@
 const express = require('express')
-const mongodb = require('mongodb');
+const MongoClient = require('mongodb').MongoClient;
 const bodyParser = require('body-parser');
 const router = express.Router();
-const url = "mongodb://localhost:27017/mevndb";
+const url = "mongodb://localhost:27017";
 //const posts = require('../../dbstore/posts')
 
 //Get Posts
@@ -32,16 +32,11 @@ router.delete('/:id', async(req, res) => {
 
 // FUNCTIONS 
 async function loadPosts(){
-    const client = await mongodb.MongoClient.connect(url,{
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-    }, function(err, db){
-        if (err) throw err;
-        console.log('Database created!');
-    })
-
-    return client.db('mevndb').collection('posts');
+    const client = await MongoClient.connect(url, {useNewUrlParser: true, useUnifiedTopology: true});
+    const db = client.db('tldr');
+    const collection = db.collection('articles');
+    return collection;
 }
-//
+// FUNCTIONS
 
 module.exports = router;
